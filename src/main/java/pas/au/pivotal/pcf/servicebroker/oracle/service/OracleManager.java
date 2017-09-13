@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OracleManager
@@ -29,19 +31,19 @@ public class OracleManager
     public void createUserForService (String username, String password) throws SQLException
     {
         executeDDL(String.format(Constants.NEW_USER, username, password, tablespaceName, username, tempTablespaceName));
-
         logger.info("Oracle User Created ....");
 
         executeDDL(String.format(Constants.GRANT_CREATE_SESSION, username));
-
         logger.info("Grant CREATE SESSION Given ....");
 
     }
 
     public void deleteUser (String username) throws SQLException
     {
-        executeDDL(String.format(Constants.DROP_USER, username));
+        executeDDL(String.format(Constants.KILL_SESSIONS, username));
+        logger.info("Ended all current USERS sessions ....");
 
+        executeDDL(String.format(Constants.DROP_USER, username));
         logger.info("Oracle User Deleted ....");
     }
 
@@ -56,6 +58,20 @@ public class OracleManager
             logger.info("Error while executing SQL DDL statement '" + ddl + "'", e);
         }
 
+    }
+
+    public List<Map<String, Object>> executeQuery (String sql, Object[] args)
+    {
+        List<Map<String, Object>> resultList = null;
+
+        if (args == null) {
+            resultList = jdbcTemplate.queryForList(sql);
+        }
+        else {
+            resultList = jdbcTemplate.queryForList(sql, args);
+        }
+
+        return resultList;
     }
 
     public String getJdbcUrl ()
