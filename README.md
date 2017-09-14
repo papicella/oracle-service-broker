@@ -49,6 +49,12 @@ FILE_NAME							      BLOCKS TABLESPACE_NAME	    AUT   Size (M) STATUS    ONLINE
 7 rows selected.
 ```
 
+- Install the Oracle JDBC driver locally for maven
+
+```
+$ mvn install:install-file -Dfile=/Users/pasapicella/pivotal/jdbcdrivers/12c/ojdbc7.jar -DgroupId=com.oracle.jdbc -DartifactId=oracle-jdbc -Dversion=12.1.0.1.0 -Dpackaging=jar
+```
+
 <h2> Install </h2>
 
 - Clone as follows
