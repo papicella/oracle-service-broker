@@ -45,7 +45,7 @@ public class OracleServiceInstanceService implements ServiceInstanceService
         instance = new ServiceInstance(createServiceInstanceRequest);
 
         String password = RandomStringUtils.randomAlphanumeric(30);
-        String username = instance.getServiceInstanceId().replace('-', '_').substring(1, 30);
+        String username = "CF_" + instance.getServiceInstanceId().replace('-', '_').substring(1, 27);
 
         try
         {
@@ -77,7 +77,7 @@ public class OracleServiceInstanceService implements ServiceInstanceService
             throw new ServiceInstanceDoesNotExistException(instanceId);
         }
 
-        String username = instance.getServiceInstanceId().replace('-', '_').substring(1, 30);
+        String username = "CF_" + instance.getServiceInstanceId().replace('-', '_').substring(1, 27);
 
         try {
             oracleManager.deleteUser(username);

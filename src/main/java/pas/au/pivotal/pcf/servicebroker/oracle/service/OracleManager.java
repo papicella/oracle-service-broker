@@ -25,12 +25,12 @@ public class OracleManager
     @Value("${oracle.tempTablespaceName:TEMP}")
     private String tempTablespaceName;
 
-    @Value("${spring.datasource:url:}")
+    @Value("${spring.datasource.url:JDBC_URL}")
     private String jdbcUrl;
 
     public void createUserForService (String username, String password) throws SQLException
     {
-        executeDDL(String.format(Constants.NEW_USER, username, password, tablespaceName, username, tempTablespaceName));
+        executeDDL(String.format(Constants.NEW_USER, username, password, tablespaceName, tablespaceName, tempTablespaceName));
         logger.info("Oracle User Created ....");
 
         executeDDL(String.format(Constants.GRANT_CREATE_SESSION, username));
@@ -43,7 +43,7 @@ public class OracleManager
         executeDDL(String.format(Constants.KILL_SESSIONS, username));
         logger.info("Ended all current USERS sessions ....");
 
-        executeDDL(String.format(Constants.DROP_USER, username));
+        executeDDL(String.format(Constants.DROP_USER, username.toUpperCase()));
         logger.info("Oracle User Deleted ....");
     }
 

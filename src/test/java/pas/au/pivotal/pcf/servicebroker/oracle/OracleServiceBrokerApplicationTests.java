@@ -20,7 +20,7 @@ import java.util.Map;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OracleServiceBrokerApplicationTests {
 
-	private final String username = "apples";
+	private final String username = "CF_79961f7_f92b_444d_b982_49d";
 	private final String password = "welcome1";
 
 	@Autowired
@@ -32,7 +32,7 @@ public class OracleServiceBrokerApplicationTests {
 		oracleManager.createUserForService(username, password);
 
 		List<Map<String, Object>> resultList = oracleManager.executeQuery
-				(String.format(Constants.USER_EXISTS, username), null);
+				(String.format(Constants.USER_EXISTS, username.toUpperCase()), null);
 
 		Assert.assertEquals(resultList.size(), 1);
 	}
