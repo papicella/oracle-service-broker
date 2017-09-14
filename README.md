@@ -2,7 +2,7 @@
 
 The following example is a PCF 2.0 Service Broker written as a Spring Boot application. This is just an example and should
 be evolved to match a production type setup in terms oracle requirements. This service broker simple creates USERS and 
-assigns then quote against a known TABLESPACE
+assigns then 20M of quota against a known TABLESPACE
 
 <h2>Pre Steps </h2>
 
