@@ -1,8 +1,8 @@
 <h1>Oracle 12c Service Broker for Pivotal Cloud Foundry </h1>
 
 The following example is a PCF 2.0 Service Broker written as a Spring Boot application. This is just an example and should
-be evolved to match a production type setup in terms oracle requirements. This service broker simple creates USERS and 
-assigns then 20M of quota against a known TABLESPACE
+be evolved to match a production type setup in terms oracle requirements. This service broker simply creates USERS and 
+assigns then 20M of quota against a known TABLESPACE as part of the service creation and binding.
 
 <h2>Pre Steps </h2>
 
