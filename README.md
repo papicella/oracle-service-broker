@@ -138,6 +138,8 @@ oracle-service-broker-pas   started           1/1         1G       512M   oracle
 
 - Create a service broker 
 
+Note: The username and password is what is in your application.yml file for the spring.security properties
+
 ```
 pasapicella@pas-macbook:~$ cf create-service-broker oracle user password http://oracle-service-broker-pas.local.pcfdev.io
 Creating service broker oracle as admin...
